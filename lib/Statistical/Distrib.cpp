@@ -51,15 +51,19 @@ DistribData Distrib::GetDistrib(const EnjoLib::VecD & data, int numBins) const
         int numOcurrences = 0;
         for (const FP & val : dataSorted)
         {
-            if (valMin <= val && val <= valMax)
+            if (Assertions::InFast(valMin, val, valMax))
             {
                 ++numOcurrences;
             }
+            /*
             else
             {
                 if (numOcurrences > 0)
-                    break; // ?
+                {
+                    //break; // ? Breaking here makes it slower.
+                }
             }
+            */
         }
         distribData.push_back(MakePair(valMid, static_cast<FP>(numOcurrences)));
     }

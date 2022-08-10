@@ -60,7 +60,9 @@ TEST(MixUtils_values_to_ascii1)
     //const double minimum = 0;
     const double maximum = inp.Max() - 2;
 
-    const Str ret = AsciiPlot::Build()(AsciiPlot::Pars::MAXIMUM, maximum).Finalize().Plot(inp);
+    const Str ret = AsciiPlot::Build()(AsciiPlot::Pars::MAXIMUM, maximum)
+    (AsciiPlot::Pars::COLORS, true)
+    .Finalize().Plot(inp);
     CHECK(ret.size());
     LOGL << "values_to_ascii1:" << Nl << ret << Nl;
 }
@@ -134,6 +136,5 @@ TEST(AsciiPlot_builder_1)
     LOG << AsciiPlot::Build()
     (Par::COLORS, true)(Par::DECORATION, false)(Par::MAXIMUM, maximum)(Par::BLOCKS, true).
     Finalize().Plot(inp) << Nl;
-
 }
 
